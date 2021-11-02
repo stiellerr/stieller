@@ -12,8 +12,11 @@
  * @package Stieller
  */
 
-get_header();
+
+
+////get_header();
 ?>
+	<h1>Hello World!</h1>
 
 	<main id="primary" class="site-main">
 
@@ -53,5 +56,5 @@ get_header();
 	</main><!-- #main -->
 
 <?php
-get_sidebar();
-get_footer();
+//get_sidebar();
+//get_footer();
