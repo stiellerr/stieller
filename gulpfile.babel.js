@@ -2,6 +2,7 @@ import { src, dest } from "gulp";
 import zip from "gulp-zip";
 import { name } from "./package.json";
 import del from "del";
+import rename from "gulp-rename";
 
 export const compress = () => {
     del("packaged");
@@ -23,6 +24,11 @@ export const compress = () => {
         "!readme.txt",
         "!webpack.config.js"
     ])
+        .pipe(
+            rename((path) => {
+                path.dirname = `${name}/` + path.dirname;
+            })
+        )
         .pipe(zip(`${name}.zip`))
         .pipe(dest("packaged"));
 };

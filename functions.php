@@ -186,6 +186,92 @@ function stieller_scripts() {
 add_action( 'wp_enqueue_scripts', 'stieller_scripts' );
 
 /**
+ * Enqueue block editor assets.
+ */
+function stieller_editor_assets() {
+	// Enqueue the editor styles.
+	wp_enqueue_style(
+		'stieller-editor',
+		get_template_directory_uri() . '/dist/editor/css/style.css',
+		// ["wp-edit-blocks"],.
+		array(),
+		_S_VERSION
+	);
+
+	// Enqueue the editor script.
+	wp_enqueue_script(
+		'stieller-editor',
+		get_template_directory_uri() . '/dist/editor/js/script.js',
+		array(
+			//'jquery',
+			//'underscore',
+			'lodash',
+			'wp-block-editor',
+			'wp-rich-text',
+			//'wp-components',
+			'wp-i18n',
+			//'wp-dom',
+			// "wp-primitives",
+			'wp-element',
+			'wp-data',
+			'wp-compose',
+			'wp-dom-ready',
+			// xxx.
+			//'wp-blob',
+			//'wp-viewport',
+			//'wp-primitives',
+			//'wp-blocks',
+			//'wp-keycodes',
+			//'wp-hooks',
+			//'wp-plugins',
+			//'wp-edit-post',
+
+			
+			/*
+			'wp-hooks',
+			'wp-element',
+			'wp-data',
+			'wp-block-editor',
+			'wp-rich-text',
+			'wp-blocks',
+			'wp-i18n',
+			'wp-block-editor',
+			'wp-components',
+			'lodash',
+			'wp-plugins',
+			'wp-edit-post',
+			'wp-compose'
+			'jquery',
+			'wp-compose',
+			'wp-data',
+			'wp-editor',
+			'wp-element',
+			'wp-rich-text',
+			*/
+		),
+		_S_VERSION,
+		true
+	);
+
+	// load font awesome data to browser...
+	/*
+	wp_localize_script(
+		'zthemename-editor',
+		'fa_icons',
+		array(
+			'data' => get_template_directory_uri() . '/dist/data/icons.json',
+		)
+	);
+	*/
+}
+
+add_action( 'enqueue_block_editor_assets', 'stieller_editor_assets' );
+
+
+
+
+
+/**
  * Implement the Custom Header feature.
  */
 ////require get_template_directory() . '/inc/custom-header.php';
@@ -211,4 +297,12 @@ add_action( 'wp_enqueue_scripts', 'stieller_scripts' );
 //if ( defined( 'JETPACK__VERSION' ) ) {
 	//require get_template_directory() . '/inc/jetpack.php';
 //}
+
+
+// Second Way To Better Apply, If You Can't Change Source Code 
+function stieller_get_custom_logo( $html ) {
+	return str_replace( 'custom-logo', 'custom-logo img-fluid rounded-circle shadow', $html );
+}
+
+add_filter( 'get_custom_logo', 'stieller_get_custom_logo', 10 );
 
