@@ -24,7 +24,7 @@
 <?php wp_body_open(); ?>
 <div class="container">
 	<header class="row my-3">
-		<div class="col-12 col-md-5 col-lg-4 col-xl-3 text-center">
+		<div class="zzz col-12 col-md-5 col-lg-4 col-xl-3 text-center">
 			<?php the_custom_logo(); ?>
 		</div>
 		<div class="col my-auto">

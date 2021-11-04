@@ -47,6 +47,11 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
 
 @import "~bootstrap/scss/bootstrap";
 
-.text-justify {
+.has-text-align-justify {
     text-align: justify;
+}
+
+.zzz {
+    background-color: aqua;
+    border-top-left-radius: 25px;
 }

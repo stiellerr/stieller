@@ -12,6 +12,7 @@ module.exports = (a, b) => {
     return {
         entry: {
             "js/script": "./src/index.js",
+            "js/admin": "./src/admin.js",
             "editor/js/script": "./src/editor/script.js"
             //"js/admin": "./src/admin.js",
             //"js/customize-preview": "./src/customize-preview.js",
@@ -99,7 +100,7 @@ module.exports = (a, b) => {
             ]
         },
         externals: {
-            //jquery: "jQuery",
+            jquery: "jQuery",
             //underscore: "_",
             lodash: "lodash",
             "@wordpress/block-editor": ["wp", "blockEditor"],

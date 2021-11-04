@@ -185,6 +185,34 @@ function stieller_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'stieller_scripts' );
 
+
+/**
+ * Register and Enqueue Admin Scripts and Styles.
+ */
+function stieller_admin_scripts() {
+
+	/*
+	wp_enqueue_style(
+		'zthemename-admin',
+		get_template_directory_uri() . '/dist/css/admin.css',
+		array(),
+		_S_VERSION
+	);
+	*/
+
+	wp_enqueue_script(
+		'stieller-admin',
+		get_template_directory_uri() . '/dist/js/admin.js',
+		array( 'jquery' ),
+		_S_VERSION,
+		false
+	);
+}
+
+add_action( 'admin_enqueue_scripts', 'stieller_admin_scripts' );
+
+
+
 /**
  * Enqueue block editor assets.
  */
@@ -305,4 +333,52 @@ function stieller_get_custom_logo( $html ) {
 }
 
 add_filter( 'get_custom_logo', 'stieller_get_custom_logo', 10 );
+
+// Custom options class.
+require_once get_template_directory() . '/classes/class-stieller-options-page.php';
+
+add_filter( 'https_ssl_verify', '__return_false' );
+
+
+$ztitle = "today33";
+
+$name = "Stay In Front";
+
+//$date = date("  Y-m-d");
+
+$today = date('F j\<\s\u\p\>S\<\/\s\u\p\> Y');
+
+
+$content  = '<!-- wp:paragraph --><p>' . $today . '</p><!-- /wp:paragraph -->';
+$content .= '<!-- wp:paragraph --><p>Human Resources<br>' . $name . '</p><!-- /wp:paragraph -->';
+
+
+$page = get_page_by_title( $ztitle, 'OBJECT', 'page' );
+
+//write_log( $page );
+
+if ( ! empty( $page ) )
+{
+	write_log( "Page already exists:" );
+	
+	//echo "Page already exists:" . $title_of_the_page . "<br/>";
+	//return $objPage->ID;
+} else {
+	
+	write_log( "creating page..." );
+
+	wp_insert_post(
+		array(
+		'comment_status' => 'close',
+		'ping_status'    => 'close',
+		'post_author'    => 1,
+		'post_title'     => ucwords( $ztitle ),
+		'post_name'      => strtolower( str_replace(' ', '-', trim( $ztitle ) ) ),
+		'post_status'    => 'publish',
+		'post_content'   => $content,
+		'post_type'      => 'page',
+		//'post_parent'    =>  $parent_id //'id_of_the_parent_page_if_it_available'
+		)
+	);
+}
 
