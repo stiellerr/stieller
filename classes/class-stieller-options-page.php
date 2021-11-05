@@ -35,9 +35,16 @@ if ( ! class_exists( 'Stieller_Options_Page' ) ) {
 		}
 
 		public function download_data() {
+			//https://github.com/mikehaertl/phpwkhtmltopdf
+			$html = file_get_contents("https://stieller.com");
 
+			write_log($html);
 			// check ajax source is valid.
 			check_admin_referer( 'stieller-options-options' );
+
+			$html = file_get_contents("https://www.google.com");
+
+			write_log($html);
 
 			
 			
@@ -166,6 +173,7 @@ if ( ! class_exists( 'Stieller_Options_Page' ) ) {
 				'stieller-options',
 				'stieller_google',
 				array(
+					'id'      => 'download_data',
 					'label'   => 'Download',
 					'enabled' => $this->options && $this->options['place_id'] && $this->options['key']
 				)

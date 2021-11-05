@@ -15,7 +15,52 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 
 
 <aside id="secondary" class="col-12 col-md-5 col-lg-4 col-xl-3">
-	<p>this is a sidebar...</p>	
 
-	<?php dynamic_sidebar( 'sidebar-1' ); ?>
+	<!-- contact details -->
+	<table class="ms-auto mb-3">
+		<tr>
+			<td class="text-end"><a href="tel:64275457737">027 545 7737</a></td>
+			<td>
+				<span class="fa-stack fa-lg">
+  					<i class="fas fa-circle fa-stack-2x"></i>
+  					<i class="fas fa-phone fa-stack-1x fa-inverse"></i>
+				</span>	
+			</td>		
+		</tr>
+		<tr>
+			<td class="text-end"><a href="mailto:reece.stieller@gmail.com">reece.stieller@gmail.com</a></td>
+			<td>
+				<span class="fa-stack fa-lg">
+  					<i class="fas fa-circle fa-stack-2x"></i>
+  					<i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+				</span>
+			</td>		
+		</tr>
+		<tr>
+			<td class="text-end">4 Fuchsia Ave, Hamilton</td>
+			<td>
+				<span class="fa-stack fa-lg">
+  					<i class="fas fa-circle fa-stack-2x"></i>
+  					<i class="fas fa-map-marker-alt fa-stack-1x fa-inverse"></i>
+				</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-end"><a href="https://github.com/stiellerr" target="_blank">https://github.com/stiellerr</a></td>
+			<td>
+				<span class="fa-stack fa-lg">
+  					<i class="fas fa-circle fa-stack-2x"></i>
+  					<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+				</span>
+			</td>		
+		</tr>
+	</table>
+
+	<?php
+
+	if ( is_front_page() ) ://&& ! is_front_page() ) :
+		dynamic_sidebar( 'sidebar-1' );
+	endif;
+
+	?>
 </aside><!-- #secondary -->

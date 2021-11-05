@@ -63,7 +63,7 @@ get_header();
 
 	<!--<main id="primary" class="site-main">
 	<div class="container">-->
-		<div class="row">
+		<div class="row my-md-3">
 
 			<?php get_sidebar(); ?>
 	
@@ -86,8 +86,6 @@ get_header();
 					while ( have_posts() ) :
 						the_post();
 						the_content();
-						?>xxxx<?php
-
 						/*
 							* Include the Post-Type-specific template for the content.
 							* If you want to override this in a child theme, then include a file

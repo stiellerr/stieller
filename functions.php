@@ -117,6 +117,20 @@ if ( ! function_exists( 'stieller_setup' ) ) :
 				'flex-height' => true,
 			)
 		);
+
+		/*
+		 * Enable support for custom line heights.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support/#supporting-custom-line-heights
+		 */
+		add_theme_support( 'custom-line-height' );
+
+		/*
+		 * Enable support for Spacing control.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support/#spacing-control
+		 */
+		add_theme_support( 'custom-spacing' );
 	}
 endif;
 add_action( 'after_setup_theme', 'stieller_setup' );
@@ -337,6 +351,8 @@ add_filter( 'get_custom_logo', 'stieller_get_custom_logo', 10 );
 // Custom options class.
 require_once get_template_directory() . '/classes/class-stieller-options-page.php';
 
+
+/*
 add_filter( 'https_ssl_verify', '__return_false' );
 
 
@@ -381,4 +397,5 @@ if ( ! empty( $page ) )
 		)
 	);
 }
+*/
 

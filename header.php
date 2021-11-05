@@ -22,12 +22,12 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<div class="container">
-	<header class="row my-3">
+<div class="container my-3">
+	<header class="row">
 		<div class="zzz col-12 col-md-5 col-lg-4 col-xl-3 text-center">
 			<?php the_custom_logo(); ?>
 		</div>
-		<div class="col my-auto">
+		<div class="col my-2 my-md-auto">
 			<h1 class="display-1 text-uppercase text-center text-md-start"><?php echo str_replace( " ", "<br>", get_bloginfo( 'name' ) ); ?></h1>
 		</div>
 	</header><!-- #header -->
