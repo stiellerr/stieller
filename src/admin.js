@@ -1,9 +1,5 @@
 /* global ajaxurl */
 
-//import "./admin.scss";
-
-//console.log("admin loaded");
-
 /**
  * External dependencies
  */

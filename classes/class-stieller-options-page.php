@@ -34,7 +34,76 @@ if ( ! class_exists( 'Stieller_Options_Page' ) ) {
             
 		}
 
+
+
 		public function download_data() {
+			
+			write_log('zzz');
+			
+			$body = array(
+				'url' => 'http://stieller.com'
+			);
+			
+			$args = array(
+				'method'      => 'POST',
+				'headers' => array(
+					"content-type"    => "application/json",
+					"x-rapidapi-host" => "cloudlayer-io.p.rapidapi.com",
+					"x-rapidapi-key"  => "3b9aa8c9ccmshc1f44dedd476f3ep1168d5jsne6a1d02095ce"
+				),
+				'body' => json_encode($body)
+			);
+
+			
+			
+			$response = wp_remote_post(
+				"https://cloudlayer-io.p.rapidapi.com/v1/url/pdf",
+				$args
+			);
+
+			$upload = wp_upload_bits('zzz.pdf', null, $response['body']);
+
+			write_log($upload);
+
+			$curl = curl_init();
+
+
+			curl_setopt_array($curl, [
+				CURLOPT_URL => "https://cloudlayer-io.p.rapidapi.com/v1/url/image?url=https%3A%2F%2Fstieller.com",
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_ENCODING => "",
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 30,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => "GET",
+				CURLOPT_HTTPHEADER => [
+					"x-rapidapi-host: cloudlayer-io.p.rapidapi.com",
+					"x-rapidapi-key: 3b9aa8c9ccmshc1f44dedd476f3ep1168d5jsne6a1d02095ce"
+				],
+			]);
+
+			$response = curl_exec($curl);
+			
+			write_log($response);
+			
+			return;
+			
+			$err = curl_error($curl);
+
+			curl_close($curl);
+
+			if ($err) {
+				echo "cURL Error #:" . $err;
+			} else {
+				echo $response;
+			}
+			
+			
+			
+			
+			
+			
 			//https://github.com/mikehaertl/phpwkhtmltopdf
 			$html = file_get_contents("https://stieller.com");
 

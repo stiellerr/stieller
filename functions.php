@@ -178,6 +178,11 @@ function stieller_scripts() {
 		_S_VERSION
 	);
 
+	wp_enqueue_style(
+		'google-fonts',
+		'https://fonts.googleapis.com/css2?family=Lato&display=swap'
+	); 
+
 	wp_dequeue_style( 'wp-block-library' );
 
 	wp_deregister_script( 'wp-embed' );
@@ -310,7 +315,29 @@ function stieller_print_head_meta() {
 	<?php
 }
 
-add_action( 'wp_head', 'stieller_print_head_meta', 1 );
+add_action( 'wp_head', 'stieller_print_head_meta', 2 );
+
+
+// dns prefetch filter
+function stieller_wp_resource_hints( $urls, $relation_type ) {
+
+	if ( 'preconnect' === $relation_type ) {
+
+		$urls[] = array(
+			'href' => 'https://fonts.googleapis.com'
+		);
+
+		$urls[] = array(
+			'href' => 'https://fonts.gstatic.com',
+			'crossorigin'
+		);
+	}
+
+	return $urls;
+}
+
+add_filter( 'wp_resource_hints', 'stieller_wp_resource_hints', 10, 2 );
+
 
 
 /*

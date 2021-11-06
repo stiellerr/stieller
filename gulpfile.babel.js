@@ -12,7 +12,6 @@ export const compress = () => {
         "!node_modules/**",
         "!packaged/**",
         "!src/**",
-        "!temp/**",
         "!.babelrc",
         "!.eslintrc.js",
         "!.gitignore",
