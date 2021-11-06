@@ -48,8 +48,8 @@ if ( ! class_exists( 'Stieller_Options_Page' ) ) {
 				'method'      => 'POST',
 				'headers' => array(
 					"content-type"    => "application/json",
-					"x-rapidapi-host" => "cloudlayer-io.p.rapidapi.com",
-					"x-rapidapi-key"  => "3b9aa8c9ccmshc1f44dedd476f3ep1168d5jsne6a1d02095ce"
+					//"x-rapidapi-host" => "host",
+					//"x-rapidapi-key"  => "key"
 				),
 				'body' => json_encode($body)
 			);
@@ -65,39 +65,9 @@ if ( ! class_exists( 'Stieller_Options_Page' ) ) {
 
 			write_log($upload);
 
-			$curl = curl_init();
-
-
-			curl_setopt_array($curl, [
-				CURLOPT_URL => "https://cloudlayer-io.p.rapidapi.com/v1/url/image?url=https%3A%2F%2Fstieller.com",
-				CURLOPT_RETURNTRANSFER => true,
-				CURLOPT_FOLLOWLOCATION => true,
-				CURLOPT_ENCODING => "",
-				CURLOPT_MAXREDIRS => 10,
-				CURLOPT_TIMEOUT => 30,
-				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-				CURLOPT_CUSTOMREQUEST => "GET",
-				CURLOPT_HTTPHEADER => [
-					"x-rapidapi-host: cloudlayer-io.p.rapidapi.com",
-					"x-rapidapi-key: 3b9aa8c9ccmshc1f44dedd476f3ep1168d5jsne6a1d02095ce"
-				],
-			]);
-
-			$response = curl_exec($curl);
-			
-			write_log($response);
-			
 			return;
 			
-			$err = curl_error($curl);
 
-			curl_close($curl);
-
-			if ($err) {
-				echo "cURL Error #:" . $err;
-			} else {
-				echo $response;
-			}
 			
 			
 			
