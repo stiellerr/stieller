@@ -90,7 +90,6 @@ if ( ! class_exists( 'Zthemename_Options_Page' ) ) {
 			// testimonials.
 			// photos / gallery. media_sideload_image
 			//$ttt1 = media_sideload_image( 'https://www.murraybros.co.nz/images/photo/service/stock-cartage.jpg' );
-			//$ttt2 = media_sideload_image( 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=403&photoreference=ATtYBwKFzcADJXgaBCxpUP8ixBZSfn7yPKpnqV0Gcrv9MM4eVCErhCG60bcQgQdUj7ShL8pw9vatdX9xPIULbvDydRSueqYifMCfYrWuAGRi3N9itn7h2BVboVXqsH2SweGaQ9yj6wg90bVpI5EHA7LDBPchfppLemvmCt20LsS6jC_f8Azd&key=AIzaSyCKPAa7QAk7mOdAzqD64OHmrBMW3hT8998&name=test.jpg' );
 			//write_log( $ttt1 );
 			//write_log( $ttt2 );
 
@@ -328,7 +327,6 @@ if ( ! class_exists( 'Zthemename_Options_Page' ) ) {
 					//write_log( $request );
 
 					//$title = sanitize_title( get_bloginfo( $name ) );
-					//$url = https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key=YOUR_API_KEY
 
 					//write_log( $photo );
 					//
