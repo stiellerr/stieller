@@ -31,7 +31,7 @@
 			<div class="h-100 d-sm-flex align-items-center">
 				<h1 class="display-1 text-uppercase text-center text-md-start mb-0 mt-3 mt-sm-0"><?php echo str_replace( " ", "<br>", get_bloginfo( 'name' ) ); ?></h1>
 			</div>
-		</div>
+		</div><!-- -->
 	</header><!-- #header -->
 
 
