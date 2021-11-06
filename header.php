@@ -24,11 +24,13 @@
 <?php wp_body_open(); ?>
 <div class="container my-3">
 	<header class="row">
-		<div class="zzz col-12 col-md-5 col-lg-4 col-xl-3 text-center">
+		<div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 text-center pt-md-5">
 			<?php the_custom_logo(); ?>
 		</div>
-		<div class="col my-2 my-md-auto">
-			<h1 class="display-1 text-uppercase text-center text-md-start"><?php echo str_replace( " ", "<br>", get_bloginfo( 'name' ) ); ?></h1>
+		<div class="col">
+			<div class="h-100 d-sm-flex align-items-center">
+				<h1 class="display-1 text-uppercase text-center text-md-start mb-0 mt-3 mt-sm-0"><?php echo str_replace( " ", "<br>", get_bloginfo( 'name' ) ); ?></h1>
+			</div>
 		</div>
 	</header><!-- #header -->
 

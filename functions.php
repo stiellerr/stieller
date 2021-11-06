@@ -7,8 +7,7 @@
  * @package Stieller
  */
 
-
-// useful function for witing to the log.
+ // useful function for witing to the log.
 if ( ! function_exists( 'write_log ' ) ) {
 	/**
 	 * Useful function for witing to the log..
@@ -179,6 +178,11 @@ function stieller_scripts() {
 		_S_VERSION
 	);
 
+	wp_dequeue_style( 'wp-block-library' );
+
+	wp_deregister_script( 'wp-embed' );
+
+	/*
 	wp_enqueue_script(
 		'stieller-script',
 		get_template_directory_uri() . '/dist/js/script.js',
@@ -186,16 +190,7 @@ function stieller_scripts() {
 		_S_VERSION,
 		true
 	);
-
-
-	//wp_enqueue_style( 'stieller-style', get_stylesheet_uri(), array(), _S_VERSION );
-	//wp_style_add_data( 'stieller-style', 'rtl', 'replace' );
-
-	//wp_enqueue_script( 'stieller-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
-	//if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		//wp_enqueue_script( 'comment-reply' );
-	//}
+	*/
 }
 add_action( 'wp_enqueue_scripts', 'stieller_scripts' );
 
@@ -225,8 +220,6 @@ function stieller_admin_scripts() {
 
 add_action( 'admin_enqueue_scripts', 'stieller_admin_scripts' );
 
-
-
 /**
  * Enqueue block editor assets.
  */
@@ -235,7 +228,6 @@ function stieller_editor_assets() {
 	wp_enqueue_style(
 		'stieller-editor',
 		get_template_directory_uri() . '/dist/editor/css/style.css',
-		// ["wp-edit-blocks"],.
 		array(),
 		_S_VERSION
 	);
@@ -245,103 +237,24 @@ function stieller_editor_assets() {
 		'stieller-editor',
 		get_template_directory_uri() . '/dist/editor/js/script.js',
 		array(
-			//'jquery',
-			//'underscore',
 			'lodash',
 			'wp-block-editor',
 			'wp-rich-text',
-			//'wp-components',
 			'wp-i18n',
-			//'wp-dom',
-			// "wp-primitives",
 			'wp-element',
 			'wp-data',
 			'wp-compose',
 			'wp-dom-ready',
-			// xxx.
-			//'wp-blob',
-			//'wp-viewport',
-			//'wp-primitives',
-			//'wp-blocks',
-			//'wp-keycodes',
-			//'wp-hooks',
-			//'wp-plugins',
-			//'wp-edit-post',
-
-			
-			/*
-			'wp-hooks',
-			'wp-element',
-			'wp-data',
-			'wp-block-editor',
-			'wp-rich-text',
-			'wp-blocks',
-			'wp-i18n',
-			'wp-block-editor',
-			'wp-components',
-			'lodash',
-			'wp-plugins',
-			'wp-edit-post',
-			'wp-compose'
-			'jquery',
-			'wp-compose',
-			'wp-data',
-			'wp-editor',
-			'wp-element',
-			'wp-rich-text',
-			*/
 		),
 		_S_VERSION,
 		true
 	);
-
-	// load font awesome data to browser...
-	/*
-	wp_localize_script(
-		'zthemename-editor',
-		'fa_icons',
-		array(
-			'data' => get_template_directory_uri() . '/dist/data/icons.json',
-		)
-	);
-	*/
 }
 
 add_action( 'enqueue_block_editor_assets', 'stieller_editor_assets' );
 
 
-
-
-
-/**
- * Implement the Custom Header feature.
- */
-////require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Custom template tags for this theme.
- */
-//require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-//require get_template_directory() . '/inc/template-functions.php';
-
-/**
- * Customizer additions.
- */
-//require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-//if ( defined( 'JETPACK__VERSION' ) ) {
-	//require get_template_directory() . '/inc/jetpack.php';
-//}
-
-
-// Second Way To Better Apply, If You Can't Change Source Code 
+// modify the custom logo image class.
 function stieller_get_custom_logo( $html ) {
 	return str_replace( 'custom-logo', 'custom-logo img-fluid rounded-circle shadow', $html );
 }
@@ -350,6 +263,54 @@ add_filter( 'get_custom_logo', 'stieller_get_custom_logo', 10 );
 
 // Custom options class.
 require_once get_template_directory() . '/classes/class-stieller-options-page.php';
+
+function stieller_disable_emojicons_tinymce( $plugins ) {
+	if ( is_array( $plugins ) ) {
+	  return array_diff( $plugins, array( 'wpemoji' ) );
+	} else {
+	  return array();
+	}
+}
+
+function stieller_disable_wp_emojicons() {
+	
+	// all actions related to emojis
+	remove_action( 'admin_print_styles', 'print_emoji_styles' );
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+   
+	// filter to remove TinyMCE emojis
+	add_filter( 'tiny_mce_plugins', 'stieller_disable_emojicons_tinymce' );
+
+}
+
+add_action( 'init', 'stieller_disable_wp_emojicons' );
+   
+// remove the DNS prefetch
+add_filter( 'emoji_svg_url', '__return_false' );
+
+/**
+ * Prints the custom meta description set in the page meta.
+ */
+function stieller_print_head_meta() {
+	?>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-918M8W3GF9"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+	
+		gtag('config', 'G-918M8W3GF9');
+	</script>
+	<?php
+}
+
+add_action( 'wp_head', 'stieller_print_head_meta', 1 );
 
 
 /*

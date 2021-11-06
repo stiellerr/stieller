@@ -6,18 +6,11 @@
  *
  * @package Stieller
  */
-/*
-if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-	return;
-}*/
 ?>
 
-
-
-<aside id="secondary" class="col-12 col-md-5 col-lg-4 col-xl-3">
-
+<aside id="secondary" class="col-12 col-md-5 col-lg-4 col-xl-3 order-md-first">
 	<!-- contact details -->
-	<table class="ms-auto mb-3">
+	<table class="d-none d-md-table ms-auto my-3">
 		<tr>
 			<td class="text-end"><a href="tel:64275457737">027 545 7737</a></td>
 			<td>
@@ -58,7 +51,7 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 
 	<?php
 
-	if ( is_front_page() ) ://&& ! is_front_page() ) :
+	if ( is_front_page() ) :
 		dynamic_sidebar( 'sidebar-1' );
 	endif;
 

@@ -50,7 +50,11 @@ module.exports = (a, b) => {
                 minimizerOptions: {
                     // Lossless optimization with custom option
                     // Feel free to experiment with options for better result for you
-                    plugins: [["mozjpeg", { quality: 20 }]]
+                    plugins: [
+                        //["mozjpeg", { quality: 80 }]
+                        ["jpegtran", { progressive: true }],
+                        ["optipng", { optimizationLevel: 5 }]
+                    ]
                 }
             })
         ],
