@@ -18,9 +18,9 @@ get_header();
 		<main id="primary" class="col">
 
 			<!-- contact details -->
-			<table class="ml-auto my-3 d-md-none">
+			<table class="ms-auto my-3 d-md-none">
 				<tr>
-					<td class="text-right"><a href="tel:64275457737">027 545 7737</a></td>
+					<td class="text-end"><a href="tel:64275457737">027 545 7737</a></td>
 					<td>
 						<span class="fa-stack fa-lg">
 							<i class="fas fa-circle fa-stack-2x"></i>
@@ -29,7 +29,7 @@ get_header();
 					</td>		
 				</tr>
 				<tr>
-					<td class="text-right"><a href="mailto:reece.stieller@gmail.com">reece.stieller@gmail.com</a></td>
+					<td class="text-end"><a href="mailto:reece.stieller@gmail.com">reece.stieller@gmail.com</a></td>
 					<td>
 						<span class="fa-stack fa-lg">
 							<i class="fas fa-circle fa-stack-2x"></i>
@@ -38,7 +38,7 @@ get_header();
 					</td>		
 				</tr>
 				<tr>
-					<td class="text-right">Pukete, Hamilton</td>
+					<td class="text-end">Pukete, Hamilton</td>
 					<td>
 						<span class="fa-stack fa-lg">
 							<i class="fas fa-circle fa-stack-2x"></i>
@@ -47,7 +47,7 @@ get_header();
 					</td>
 				</tr>
 				<tr>
-					<td class="text-right"><a href="https://github.com/stiellerr" target="_blank">https://github.com/stiellerr</a></td>
+					<td class="text-end"><a href="https://github.com/stiellerr" target="_blank">https://github.com/stiellerr</a></td>
 					<td>
 						<span class="fa-stack fa-lg">
 							<i class="fas fa-circle fa-stack-2x"></i>

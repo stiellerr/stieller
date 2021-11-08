@@ -315,7 +315,7 @@ function stieller_print_head_meta() {
 	<?php
 }
 
-add_action( 'wp_head', 'stieller_print_head_meta', 2 );
+//add_action( 'wp_head', 'stieller_print_head_meta', 2 );
 
 
 // dns prefetch filter

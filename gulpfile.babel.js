@@ -11,6 +11,7 @@ export const compress = () => {
         "!.husky/**",
         "!node_modules/**",
         "!packaged/**",
+        "!archive/**",
         "!src/**",
         "!.babelrc",
         "!.eslintrc.js",
